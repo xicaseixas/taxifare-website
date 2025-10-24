@@ -48,8 +48,7 @@ response = requests.get(url, params=params)
 
 
 if response.status_code == 200:
-    result = response.json()
-    prediction = result.get('prediction')
-    st.success(f'Predicted fare: {prediction}')
+    prediction = response.json()
+    st.success(f"Predicted fare: ${round(prediction['fare'], 2)}")
 else:
     st.error(f'Error: {response.status_code}, {response.text}')
